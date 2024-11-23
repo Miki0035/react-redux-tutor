@@ -34,7 +34,7 @@ const initialStateForBurger = {
 
 const reducerPizza = (state = initialStateForPizza, action) => {
   switch (action.type) {
-    case "ORDER_PIZZA":
+    case ORDER_PIZZA:
       return {
         ...state,
         pizzaBase: state.pizzaBase - 1,
@@ -46,7 +46,12 @@ const reducerPizza = (state = initialStateForPizza, action) => {
 
 const reducerBurger = (state = initialStateForBurger, action) => {
   switch (action.type) {
-    case "ORDER_BURGER":
+    case ORDER_BURGER:
+      return {
+        ...state,
+        burgerBuns: state.burgerBuns - 1,
+      };
+    case ORDER_PIZZA:
       return {
         ...state,
         burgerBuns: state.burgerBuns - 1,
@@ -59,9 +64,9 @@ const reducerBurger = (state = initialStateForBurger, action) => {
 // STORE
 // 1- Store holds application state responsiblity
 const rootReducer = combineReducer({
-    pizza: reducerPizza,
-    burger: reducerBurger
-})
+  pizza: reducerPizza,
+  burger: reducerBurger,
+});
 const store = createStore(rootReducer);
 
 // 2 - Has getState() method
